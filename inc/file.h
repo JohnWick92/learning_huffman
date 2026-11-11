@@ -4,6 +4,17 @@
 #include <stdio.h>
 
 #define ASCII_SIZE 128
+#define ASCII_CHARACTER_SIZE 1
+#define READER_BUFFER 8192
+/**
+ * Calculates the total number of elements (length) of a static array.
+ *
+ * @param array      static array whose number of elements is to be computed.
+ *                   Must not be a pointer or a function parameter.
+ * @return           the total count of items in the array as a compile-time
+ *                   constant expression of type size_t.
+ */
+#define ARRAY_LENGTH(array) (sizeof(array) / sizeof((array)[0]))
 
 /**
  * Reads the whole file pointed to by fp and accumulates, in freq[],
