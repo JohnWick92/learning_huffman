@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../inc/file.h"
+#include "../inc/utf8_frequency.h"
 
 int main(int argc, char *argv[]) {
   FILE*         fptr = NULL;
-  unsigned long frequency[ASCII_SIZE] = {0};
+  uint32_t*     frequency_table = {0};
+
 
   if (argc != 2) {
     fprintf(stderr, "Usage %s <filename>\n", argv[0]);
@@ -17,11 +18,7 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  printf("This should read a file and compress the archive using Huffman algorithm\n");
-  if (get_ascii_char_frequency(fptr, frequency) != 0) {
-    // TODO: Need to improve this!
-    printf("Something went wrong\n");
-  }
+  frequency_table = build_utf8_frequency_table(fptr);
 
   fclose(fptr);
   return EXIT_SUCCESS;
